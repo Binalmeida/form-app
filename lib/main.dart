@@ -38,6 +38,16 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _observacoes.add(novaObs);
     });
+
+    // Exercício 03: mostra a quantidade total atualizada
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Cadastro realizado! Total de observações: ${_observacoes.length}',
+        ),
+        backgroundColor: Colors.teal,
+      ),
+    );
   }
 
   @override
@@ -52,25 +62,43 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FormularioObservacao(onAdicionar: _adicionarObservacao),
-            const Divider(height: 30, thickness: 2),
+            FormularioObservacao(
+              onAdicionar: _adicionarObservacao,
+            ),
+
+            const Divider(
+              height: 30,
+              thickness: 2,
+            ),
+
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     'Histórico de Registros',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+
                   Chip(
-                    label: Text('${_observacoes.length} registros'),
+                    label: Text(
+                      '${_observacoes.length} registros',
+                    ),
                     backgroundColor: Colors.teal.shade50,
                   ),
                 ],
               ),
             ),
-            ListaObservacoes(observacoes: _observacoes),
+
+            ListaObservacoes(
+              observacoes: _observacoes,
+            ),
           ],
         ),
       ),
