@@ -17,13 +17,18 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
   final _tituloController = TextEditingController();
   final _especieController = TextEditingController();
   final _localController = TextEditingController();
+  final _observadorController = TextEditingController();
 
   void _submeterFormulario() {
     final titulo = _tituloController.text.trim();
     final especie = _especieController.text.trim();
     final local = _localController.text.trim();
+    final observador = _observadorController.text.trim();
 
-    if (titulo.isEmpty || especie.isEmpty || local.isEmpty) {
+    if (titulo.isEmpty ||
+        especie.isEmpty ||
+        local.isEmpty ||
+        observador.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Por favor, preencha todos os campos!'),
@@ -37,6 +42,7 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
       titulo: titulo,
       especie: especie,
       local: local,
+      observador: observador,
       data: DateTime.now(),
     );
 
@@ -46,6 +52,7 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
     _tituloController.clear();
     _especieController.clear();
     _localController.clear();
+    _observadorController.clear();
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -60,6 +67,7 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
     _tituloController.clear();
     _especieController.clear();
     _localController.clear();
+    _observadorController.clear();
   }
 
   @override
@@ -67,6 +75,7 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
     _tituloController.dispose();
     _especieController.dispose();
     _localController.dispose();
+    _observadorController.dispose();
     super.dispose();
   }
 
@@ -122,6 +131,17 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
               ),
             ),
 
+            const SizedBox(height: 10),
+
+            TextField(
+              controller: _observadorController,
+              decoration: const InputDecoration(
+                labelText: 'Observador',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person),
+              ),
+            ),
+
             const SizedBox(height: 16),
 
             ElevatedButton.icon(
@@ -137,7 +157,6 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
 
             const SizedBox(height: 8),
 
-            // Botão adicionado no Exercício 01
             OutlinedButton.icon(
               onPressed: _limparFormulario,
               icon: const Icon(Icons.clear),
