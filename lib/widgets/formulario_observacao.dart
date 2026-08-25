@@ -4,7 +4,10 @@ import '../models/observacao.dart';
 class FormularioObservacao extends StatefulWidget {
   final Function(Observacao) onAdicionar;
 
-  const FormularioObservacao({super.key, required this.onAdicionar});
+  const FormularioObservacao({
+    super.key,
+    required this.onAdicionar,
+  });
 
   @override
   State<FormularioObservacao> createState() => _FormularioObservacaoState();
@@ -52,6 +55,13 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
     );
   }
 
+  // Exercício 01: limpa manualmente todos os campos
+  void _limparFormulario() {
+    _tituloController.clear();
+    _especieController.clear();
+    _localController.clear();
+  }
+
   @override
   void dispose() {
     _tituloController.dispose();
@@ -78,7 +88,9 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
                 color: Colors.teal,
               ),
             ),
+
             const SizedBox(height: 12),
+
             TextField(
               controller: _tituloController,
               decoration: const InputDecoration(
@@ -87,7 +99,9 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
                 prefixIcon: Icon(Icons.title),
               ),
             ),
+
             const SizedBox(height: 10),
+
             TextField(
               controller: _especieController,
               decoration: const InputDecoration(
@@ -96,7 +110,9 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
                 prefixIcon: Icon(Icons.pets),
               ),
             ),
+
             const SizedBox(height: 10),
+
             TextField(
               controller: _localController,
               decoration: const InputDecoration(
@@ -105,7 +121,9 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
                 prefixIcon: Icon(Icons.location_on),
               ),
             ),
+
             const SizedBox(height: 16),
+
             ElevatedButton.icon(
               onPressed: _submeterFormulario,
               icon: const Icon(Icons.add),
@@ -113,6 +131,19 @@ class _FormularioObservacaoState extends State<FormularioObservacao> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
                 foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            // Botão adicionado no Exercício 01
+            OutlinedButton.icon(
+              onPressed: _limparFormulario,
+              icon: const Icon(Icons.clear),
+              label: const Text('Limpar Formulário'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.teal,
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),
             ),
